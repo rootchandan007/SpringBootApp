@@ -28,7 +28,6 @@ public class UserController {
 	@RequestMapping(value = { "/", "/signin" }, method = RequestMethod.GET)
 	public ModelAndView login() {
 		ModelAndView model = new ModelAndView();
-
 		model.setViewName("user/signin");
 		return model;
 	}
@@ -40,13 +39,9 @@ public class UserController {
 		user1.setEmail(user.getEmail());
 		UserInfo userExists = userService.findUserByEmail(user.getEmail());
 
-		System.out.println("From database:" + userExists.getPassword() + " From UI:" + user.getPassword() + " "
-				+ userExists.getRole());
-		if (userExists.getEmail() != null) {
-			System.out.println(userExists.getEmail());
-			System.out.println("loginValidation");
-		}
-		if (userExists.getEmail().equals(user.getEmail()) && userExists.getPassword().equals(user.getPassword())) {
+//System.out.println("From database:" + userExists.getPassword() + " From UI:" + user.getPassword() + " "	+ userExists.getRole());
+		//if (userExists.getEmail() != null) {
+		if (userExists.getEmail() != null && userExists.getEmail().equals(user.getEmail()) && userExists.getPassword().equals(user.getPassword())) {
 			if (userExists.getRole().equals("ADMIN")) {
 				model.addObject("usernotes", userService.getAllNotes());
 				model.setViewName("user/view");
@@ -54,10 +49,11 @@ public class UserController {
 				model.setViewName("home/user_note");
 			}
 		} else {
+			System.out.println("Email is not Exist");
 			bindingResult.rejectValue("login", "error.user", "This login is not exists!");
 			model.setViewName("user/signin");
 		}
-
+	//}
 		return model;
 	}
 
@@ -88,7 +84,7 @@ public class UserController {
 					user.setEnabled("0");
 				}
 			}
-			System.out.println("createUser" + userExists.getUserName() + "Role:" + userExists.getRole());
+			//System.out.println("createUser" + userExists.getUserName() + "Role:" + userExists.getRole());
 			userService.saveUser(user);
 			model.addObject("msg", "User has been registered successfully!");
 			model.addObject("user", new UserInfo());
@@ -133,7 +129,7 @@ public class UserController {
 		} else {
 			model.addObject("msg", "User has been inserted successfully!");
 			model.addObject("user", new Notes());
-			model.setViewName("user/view");
+			model.setViewName("home/user_note");
 		}
 		return model;
 	}

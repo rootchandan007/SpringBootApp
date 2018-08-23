@@ -33,8 +33,11 @@ tr:nth-child(even) {
 </head>
 <body>
 
-	<h2>View Edit and Delete Notes!!!</h2>
-
+	<h2>View Edit and Delete Notes!!!</h2> 
+	
+			<a th:href="@{/add_note}"> Add</a>
+					&emsp;&ensp; <a th:href="@{/logout}">Logout</a>
+		
 	<th:block th:if="${#lists.isEmpty(usernotes)}">
 		<h3>No employee</h3>
 	</th:block>
@@ -70,12 +73,6 @@ tr:nth-child(even) {
 			</table>
 		</div>
 	</th:block>
-	<div class="col-md-3">
-		<div class="col-md-6">
-			<a th:href="@{/add_note}"> Add</a>&emsp;&ensp;
-					<!-- <a th:href="@{/signintologin}">&emsp;&ensp;Login  </a> -->
-					 &emsp;&ensp;<a th:href="@{/logout}">Logout</a>
-				</div>
-			</div>
+	
 </body>
 </html>

@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
- xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
- <title>Sign in</title>
- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
+<title>Sign in</title>
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
 </head>
-
+<script>function validateForm() {
+    var x = document.forms["myForm"]["email"].value;
+    var xx = document.forms["myForm"]["password"].value;
+    if (x == "") {
+        alert("Email must be filled out");
+        return false;
+    }
+    if (xx == "") {
+        alert("Password must be filled out");
+        return false;
+    }
+}
+function ValidateEmail(mail) 
+{
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
+  {
+    return (true)
+  }
+    alert("You have entered an invalid email address!")
+    return (false)
+}
+</script>
 <body>
- <div class="container">
-  <div class="alert alert-danger" role="alert" th:if="${param.error}">
-   The email or password is incorrect!
-  </div>
-        <form th:action="@{/signin}" method="post" >  <!-- th:object="${user}"  -->
-        <!-- <input type="hidden" th:field="*{id}" /> -->
-        <input type="hidden" id="id" name="id" />
-          <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
-    <label class="sr-only">Email</label>  <!-- for="inputEmail"  for="inputPassword" -->
-       <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
-       <label class="sr-only">Password</label>
-       <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-       <div class="checkbox mb-3">
-         <label>
-           <input type="checkbox" name="remember-me" /> Remember me
-         </label>
-       </div>
-       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-       <div class="margin-top20 text-center"> Don't have an account? <a th:href="@{/signup}">Create an account</a></div>
-     
-  </form>
-    </div>
+	<div class="container">
+		<div class="alert alert-danger" role="alert" th:if="${param.error}">
+			The email or password is incorrect!</div>
+		<form name="myForm" th:action="@{/signin}" onsubmit="return validateForm()" method="post">
+			<!-- th:object="${user}"  -->
+			<!-- <input type="hidden" th:field="*{id}" /> -->
+			<input type="hidden" id="id" name="id" />
+			<h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+			<label class="sr-only">Email</label>
+			<!-- for="inputEmail"  for="inputPassword" -->
+			<input type="text" id="email" name="email" class="form-control"
+				placeholder="Email" required autofocus> 
+				<label
+				class="sr-only">Password</label> <input type="password"
+				id="password" name="password" class="form-control"
+				placeholder="Password" required>
+			<div class="checkbox mb-3">
+				<label> <input type="checkbox" name="remember-me" />
+					Remember me
+				</label>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="ValidateEmail(document.myForm.email)">Signin</button>
+			<div class="margin-top20 text-center">
+				Don't have an account? <a th:href="@{/signup}">Create an account</a>
+			</div>
+
+		</form>
+	</div>
 </body>
 </html>
