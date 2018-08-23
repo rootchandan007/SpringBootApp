@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<!-- <link href="../static/welcome.css" th:href="@{/welcome.css}" rel="stylesheet" media="screen" /> -->
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<title>Notes Description!!!</title>
+</head>
+<body>
+	<h2>Welcome to Notes!!!</h2>
+	<form class="form-horizontal" role="form" method="POST" th:action="@{/user_note}">
+	
+		
+			<div class="row">
+				<input type="hidden" id="notes_id" name="notes_id" />
+			</div>
+			<div class="col-md-3 field-label-responsive">
+				<label>Title </label> <input type="text" name="title" id="title"
+					placeholder="title" required autofocus>
+			</div>
+
+			<!-- <div class="col-md-3 field-label-responsive">
+				<label>Role </label>
+				
+				<input type="radio" name="role" value="ADMIN"> Admin
+			
+				<input type="radio" name="role" value="USER" checked> User
+			</div>
+ -->
+
+			<div class="col-md-3 field-label-responsive">
+				<label for="description">Description </label>
+			</div>
+			<div class="col-md-6">
+				<div class="form-group">
+					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+						<div class="input-group-addon" style="width: 3.6rem">
+							<i class="fa fa-user"></i>
+						</div>
+
+						<textarea name="description" rows="3" cols="30" id="description"
+							placeholder="description" required autofocus>
+	
+</textarea>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 field-label-responsive">
+
+				<button type="submit" class="btn btn-success">
+					<i class="fa fa-user-plus"></i>Submit
+				</button>
+			</div>
+
+
+			<div class="col-md-3">
+				<div class="col-md-6">
+					<!-- <a th:href="@{/signintologin}">&emsp;&ensp;Login</a> -->
+				</div>
+			</div>
+	</form>
+</body>
+</html>
