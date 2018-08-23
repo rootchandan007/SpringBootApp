@@ -13,7 +13,7 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
 </head>
-<script>function validateForm() {
+<!-- <script>function validateForm() {
     var x = document.forms["myForm"]["email"].value;
     var xx = document.forms["myForm"]["password"].value;
     if (x == "") {
@@ -34,12 +34,12 @@ function ValidateEmail(mail)
     alert("You have entered an invalid email address!")
     return (false)
 }
-</script>
+</script>  onclick="ValidateEmail(document.myForm.email)"  onsubmit="return validateForm()"-->
 <body>
 	<div class="container">
 		<div class="alert alert-danger" role="alert" th:if="${param.error}">
 			The email or password is incorrect!</div>
-		<form name="myForm" th:action="@{/signin}" onsubmit="return validateForm()" method="post">
+		<form name="myForm" th:action="@{/signin}" method="post">
 			<!-- th:object="${user}"  -->
 			<!-- <input type="hidden" th:field="*{id}" /> -->
 			<input type="hidden" id="id" name="id" />
@@ -57,7 +57,7 @@ function ValidateEmail(mail)
 					Remember me
 				</label>
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="ValidateEmail(document.myForm.email)">Signin</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Signin</button>
 			<div class="margin-top20 text-center">
 				Don't have an account? <a th:href="@{/signup}">Create an account</a>
 			</div>
