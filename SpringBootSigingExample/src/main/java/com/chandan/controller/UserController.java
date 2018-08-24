@@ -27,7 +27,6 @@ public class UserController {
 
 	@RequestMapping(value = { "/", "/signin" }, method = RequestMethod.GET)
 	public ModelAndView login() {
-		System.out.println("Hello");
 		ModelAndView model = new ModelAndView();
 		model.setViewName("user/signin");
 		return model;
@@ -51,13 +50,11 @@ public class UserController {
 					model.setViewName("home/user_note");
 				}
 			} else {
-				System.out.println("Email is not Exist");
-				bindingResult.rejectValue("login", "error.user", "This login is not exists!");
+				model.addObject("msg", "This Email is not Exist");
 				model.setViewName("user/signin");
 			}
 		} else {
-			System.out.println("Email is not Exist");
-			bindingResult.rejectValue("login", "error.user", "This login is not exists!");
+			model.addObject("msg", "This Email is not Exist");
 			model.setViewName("user/signin");
 		}
 		return model;
@@ -77,7 +74,7 @@ public class UserController {
 		ModelAndView model = new ModelAndView();
 		UserInfo userExists = userService.findUserByEmail(user.getEmail());
 		if (userExists != null) {
-			bindingResult.rejectValue("email", "error.user", "This email already exists!");
+			model.addObject("msg", "This email already exists!");
 		}
 		if (bindingResult.hasErrors()) {
 			model.setViewName("user/signup");
@@ -90,8 +87,6 @@ public class UserController {
 					user.setEnabled("0");
 				}
 			}
-			// System.out.println("createUser" + userExists.getUserName() + "Role:" +
-			// userExists.getRole());
 			userService.saveUser(user);
 			model.addObject("msg", "User has been registered successfully!");
 			model.addObject("user", new UserInfo());
@@ -109,9 +104,6 @@ public class UserController {
 
 	@RequestMapping(value = { "/add_note" }, method = RequestMethod.GET)
 	public String addNote(RedirectAttributes redirect) {
-		// ModelAndView model = new ModelAndView();
-		// model.addObject("usernotes", userService.getAllNotes());
-		// model.setViewName("home/user_note");
 		return "redirect:/user_note";
 	}
 

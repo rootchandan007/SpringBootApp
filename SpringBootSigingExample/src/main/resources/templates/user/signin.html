@@ -4,6 +4,7 @@
 
 <head>
 <title>Sign in</title>
+
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -13,39 +14,25 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.min.css">
 </head>
-<!-- <script>function validateForm() {
-    var x = document.forms["myForm"]["email"].value;
-    var xx = document.forms["myForm"]["password"].value;
-    if (x == "") {
-        alert("Email must be filled out");
-        return false;
-    }
-    if (xx == "") {
-        alert("Password must be filled out");
-        return false;
-    }
-}
-function ValidateEmail(mail) 
-{
- if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(myForm.emailAddr.value))
-  {
-    return (true)
-  }
-    alert("You have entered an invalid email address!")
-    return (false)
-}
-</script>  onclick="ValidateEmail(document.myForm.email)"  onsubmit="return validateForm()"-->
+
 <body>
+<div class="alert alert-${css} alert-dismissible" role="alert"></div>
 	<div class="container">
 		<div class="alert alert-danger" role="alert" th:if="${param.error}">
 			The email or password is incorrect!</div>
 		<form name="myForm" th:action="@{/signin}" method="post">
-			<!-- th:object="${user}"  -->
-			<!-- <input type="hidden" th:field="*{id}" /> -->
+		<div class="row">
+				<div class="col-md-3"></div>
+				<!-- <div class="col-md-6"> -->
+					<div class="alert alert-success" role="alert" th:if="${msg}"
+						th:utext="${msg}">
+						<div class="container"></div>
+					<!-- </div> -->
+				</div>
+			</div>
 			<input type="hidden" id="id" name="id" />
 			<h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
 			<label class="sr-only">Email</label>
-			<!-- for="inputEmail"  for="inputPassword" -->
 			<input type="text" id="email" name="email" class="form-control"
 				placeholder="Email" required autofocus> 
 				<label
